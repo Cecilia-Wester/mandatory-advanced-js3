@@ -44,12 +44,14 @@ export default class Register extends React.Component {
             return(<Redirect to='/' />)
         }
         return(
-            <div>
+            <div className='registerPage'>
                 <Helmet>
                     <title>Registration</title>
                 </Helmet>
                 <form onSubmit={ this.onSubmit }>
                     <div>
+                        <h1>New user?</h1>
+                        <h3>Register here</h3>
                         <p>Enter your email:</p>
                         <input 
                             type='email' 

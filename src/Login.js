@@ -12,7 +12,6 @@ export default class Login extends React.Component {
             password: '',
             token: token$.value,
             error: false,
-            
         }
     }
 
@@ -54,14 +53,24 @@ export default class Login extends React.Component {
     }
 
     render (){
+        if (this.state.error){
+            return(
+                <>
+                    <p>OOps...something went wrong, use a valid emailadress and password</p>
+                    <p>Not registered yet, please do at: </p><button><Link to='/register'>Register</Link></button>
+                    <p>Return to login page </p><button><Link to='/' onClick = { () => (this.setState({error: false}))}>Login</Link></button>
+                </>
+            )
+        }
         if(this.state.token){
             return <Redirect to = '/todo' />
         }
         return(
-            <div>
+            <div className='loginPage'>
                 <Helmet>
                     <title>Login</title>
                 </Helmet>
+                <h3>Login page</h3>
                 <form onSubmit={ this.onSubmit }>
                     <div>
                         <p>Enter your email:</p>
@@ -85,7 +94,6 @@ export default class Login extends React.Component {
                     </div>
                     <button type='submit'>Login</button>
                 </form>
-                <button><Link to='/register'>Register</Link></button>
             </div>
         )
     }

@@ -12,8 +12,9 @@ export default class App extends React.Component {
     return (
       <div className="App">
         <HelmetProvider>
-          <Header />
+          
           <Router>
+            <Header />
             <Route exact path='/' component={ Login } />
             <Route path = '/register' component= { Register } />
             <Route path = '/todo' component={ Todo } />

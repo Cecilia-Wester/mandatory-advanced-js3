@@ -1,26 +1,168 @@
 *{
-
+  font-family: 'Cormorant Garamond', serif;
 }
 
 .App {
   text-align: center;
-  width: 100vw;
+  width: 70vw;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
 }
 
 .wholeHeader{
-  width: 80vw;
-  height: 250px;
+  width: 70vw;
+  height: 200px;
   margin: auto;
-  background-image: url('https://images.unsplash.com/photo-1567376832261-e660f592a007?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1189&q=80');
- 
-  font-size: 50px;
+  font-size: 30px;
   justify-content: center;
   align-items: center;
+  background-color: rgb(70, 165, 126);
+}
+
+.wholeHeader h1 { 
+  color: #686868;
+  margin-top: 10px;
+}
+
+.headerText{
+  background-color: rgba(12, 160, 128, 0.466);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  width: 70vw;
+}
+
+.headerText p {
+  margin-left: 10px;
+}
+
+.headerBtn{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  padding-right: 10px;
+}
+
+.headerBtn button {
+  border-radius: 5px;
+  margin: 5px;
+  background-color: rgba(235, 238, 43, 0.849);
+  outline: none;
+  border:none;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.loginPage, .registerPage{
+  font-size: 30px;
+}
+
+.loginPage input, .registerPage input {
+  font-size: 20px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.loginPage button, .registerPage button{
+  border-radius: 5px;
+  font-size: 20px;
+  margin-top: 15px;
+}
+
+ul{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+ul li{
+  list-style: none;
+  border: 1px solid black;
+  width: fit-content;
+  height: fit-content;
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.newTask{
+  font-size: 25px;
+  background-color: rgba(119, 136, 153, 0.432);
+  width: 600px;
+  display: flex;
+  border: none;
+  border-radius: 30px;
+  margin-top: 30px;
+  align-items: center;
+  justify-content: center;
+}
+
+.todoInput {
+  font-size: 20px;
+  border-radius: 10px;
+  height: 40px;
+  width: 300px;
+  border:none;
+  text-align: center;
+  margin-left: 10px;
+  color:#686868;
+}
+
+.newTask button{
+  font-size: 20px;
+  margin-left: 20px;
+  border-radius: 10px;
+  outline: 0px;
+  border: none;
+  height: 25px;
+}
+
+.todoPage{
+  background-image: url('https://cdn.pixabay.com/photo/2016/02/02/10/14/abstract-1175050_1280.jpg');
+  width: 70vw;
+  height: 550px;
+  margin-top: 0px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   
 }
 
-.wholeHeader h1{
-  margin: 0px; 
-  color: rgba(206, 66, 31, 0.76);
+.todoDeleteButton{
+  outline: none;
+  border: none;
+  background: none;
+}
+
+.todoTasks{
+  font-size: 25px;
+  background-color: rgba(119, 136, 153, 0.432);
+  width: 600px;
+  height: 350px;
+  display: flex;
+  border: none;
+  border-radius: 30px;
+  margin-top: 30px;
+  align-items: center;
+  justify-content: center;
+  overflow-y: scroll;
+  scroll-padding-right: 10px;
+  padding:5px;
+}
+
+.todoTasks p{
+  padding:5px;
+}
+
+ul li button i{
+  padding-top: 5px
 }
 

@@ -6,6 +6,7 @@ import Register from './Register';
 import Header from './Header';
 import Todo from './Todo'
 import { Route, BrowserRouter as Router } from 'react-router-dom';
+import Footer from './Footer'
 
 export default class App extends React.Component {
   render(){
@@ -18,6 +19,7 @@ export default class App extends React.Component {
             <Route exact path='/' component={ Login } />
             <Route path = '/register' component= { Register } />
             <Route path = '/todo' component={ Todo } />
+            <Footer />
           </Router>
         </HelmetProvider>
       </div>

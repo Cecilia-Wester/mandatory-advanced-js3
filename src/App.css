@@ -12,6 +12,19 @@
   align-items: center;
 }
 
+.footerSocialMediaIcons {
+  font-size: 10px;
+  margin-top: 0px;
+  width: 70vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.footerSocialMediaIcons p{
+  margin-left: 10px;
+}
+
 .wholeHeader{
   width: 70vw;
   height: 200px;

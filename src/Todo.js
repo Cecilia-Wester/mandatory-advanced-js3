@@ -4,6 +4,7 @@ import axios from 'axios';
 import {updateToken, token$} from './store';
 import { Redirect, Link } from 'react-router-dom';
 import MaterialIcon, {colorPalette} from 'material-icons-react';
+import Linkify from 'react-linkify';
 
 export default class Todo extends React.Component {
     constructor(props){
@@ -12,7 +13,6 @@ export default class Todo extends React.Component {
             todos: [],
             todo: '',
             token: token$.value,
-            internalId: 0,
             error: false,
             errorTooLong: false,
         }
@@ -26,25 +26,28 @@ export default class Todo extends React.Component {
     }
 
     componentWillUnmount=()=> {
-        this.setState({error: true})
+        //this.setState({error: true})
         this.subscription.unsubscribe();
         updateToken(null);
 
     }
 
     deleteOnClick=(id)=>{
+        console.log(this.state.token);
         axios.delete('http://3.120.96.16:3002/todos/' + id, {
             headers: {
                 Authorization: `Bearer ${this.state.token}`
             }
         })
         .then(response => {
-            let data = response.data;
-            console.log(data.id)
-            this.fetch()
+            this.setState({
+                todos: this.state.todos.filter(x => x.id !== id)
+            })
         })
         .catch(error => {
-            this.setState({error: true})
+            if (error.response && error.response.status === 401) {
+                this.setState({error: true});
+            }
         })
     }
 
@@ -59,22 +62,30 @@ export default class Todo extends React.Component {
         })
         .catch(error => {
             console.error(error);
-            updateToken(null);
             this.setState({error:true})
+            updateToken(null);
         });
     }
 
     onSubmitTask=(e)=>{
         e.preventDefault();
-        let todoId = {id: "internal-" + this.state.internalId, todo: e.target.value};
+
+        if (this.state.todo.trim().length === 0) {
+            this.setState({errorTooLong: true})
+            return;
+        }
+
         axios.post('http://3.120.96.16:3002/todos', {content: this.state.todo}, {
             headers: {
                 Authorization: `Bearer ${this.state.token}`
             }
         })
-        .then(()=>{
-            this.setState({todos: [...this.state.todos, todoId], internalId: this.state.internalId + 1, todo: ''})
-            this.fetch()
+        .then((resp)=>{ 
+            this.setState({
+                todos: [...this.state.todos, resp.data.todo], 
+                todo: ''
+            })
+            
         })
         .catch(error => {
             console.log(error)
@@ -87,6 +98,7 @@ export default class Todo extends React.Component {
     }
 
     render(){
+        console.log(this.state.todos)
         if(this.state.errorTooLong){
             return (
                 <>
@@ -128,7 +140,7 @@ export default class Todo extends React.Component {
                         <ul>
                             {this.state.todos.map(data => (
                                 <li key={data.id}>
-                                {data.content}
+                                <Linkify>{data.content}</Linkify>
                                 <button className='todoDeleteButton' onClick = { () => this.deleteOnClick(data.id) }><MaterialIcon icon="delete" /></button>
                             </li>
                             ))}

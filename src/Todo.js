@@ -26,14 +26,11 @@ export default class Todo extends React.Component {
     }
 
     componentWillUnmount=()=> {
-        //this.setState({error: true})
         this.subscription.unsubscribe();
         updateToken(null);
-
     }
 
     deleteOnClick=(id)=>{
-        console.log(this.state.token);
         axios.delete('http://3.120.96.16:3002/todos/' + id, {
             headers: {
                 Authorization: `Bearer ${this.state.token}`
@@ -61,7 +58,6 @@ export default class Todo extends React.Component {
             this.setState({todos: response.data.todos});
         })
         .catch(error => {
-            console.error(error);
             this.setState({error:true})
             updateToken(null);
         });
@@ -69,12 +65,10 @@ export default class Todo extends React.Component {
 
     onSubmitTask=(e)=>{
         e.preventDefault();
-
         if (this.state.todo.trim().length === 0) {
             this.setState({errorTooLong: true})
             return;
         }
-
         axios.post('http://3.120.96.16:3002/todos', {content: this.state.todo}, {
             headers: {
                 Authorization: `Bearer ${this.state.token}`
@@ -85,7 +79,6 @@ export default class Todo extends React.Component {
                 todos: [...this.state.todos, resp.data.todo], 
                 todo: ''
             })
-            
         })
         .catch(error => {
             console.log(error)
@@ -98,7 +91,6 @@ export default class Todo extends React.Component {
     }
 
     render(){
-        console.log(this.state.todos)
         if(this.state.errorTooLong){
             return (
                 <>
@@ -147,7 +139,6 @@ export default class Todo extends React.Component {
                         </ul>
                     </div>
                 </div>
-                
             </div>
         )
     }
